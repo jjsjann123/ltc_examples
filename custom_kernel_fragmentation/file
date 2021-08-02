@@ -1,0 +1,793 @@
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  forward (./repro.py:24)
+  forward (./repro.py:40)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:48)
+
+Hashes: (afc1fb2100220209cbd10cf48360fe80)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] aten::gelu(%1), location=gelu@functional.py:1555
+  %3 = f32[16,4] aten::relu(%2), location=relu@functional.py:1298, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  cross_entropy (/raid/pytorch_upstream/torch/nn/functional.py:2826)
+  forward (/raid/pytorch_upstream/torch/nn/modules/loss.py:1120)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:49)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=forward@repro.py:24, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  cross_entropy (/raid/pytorch_upstream/torch/nn/functional.py:2826)
+  forward (/raid/pytorch_upstream/torch/nn/modules/loss.py:1120)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:49)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=cross_entropy@functional.py:2826, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (49f307589cca1667689ae71fb800df52)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[] lazy_tensors::device_data(), location=cross_entropy@functional.py:2826, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  backward (./repro.py:28)
+  apply (/raid/pytorch_upstream/torch/autograd/function.py:87)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=backward@repro.py:28, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (8edbc428e4f5a6734e9f9ad8c13be9d2)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] aten::gelu(%1), location=gelu@functional.py:1555, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  mark_step (/raid/pytorch_upstream/lazy_tensor_core/lazy_tensor_core/core/lazy_model.py:727)
+  <module> (./repro.py:50)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958, b92158e51a251fdc17582b1665669e9)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0, ROOT=0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.1, value=0.398942
+  %3 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.1, value=-0.5
+  %4 = f32[16,4] aten::mul(%1, %1), scope=aten::gelu_backward.1
+  %5 = f32[16,4] aten::mul(%4, %3), scope=aten::gelu_backward.1
+  %6 = f32[16,4] aten::exp(%5), scope=aten::gelu_backward.1
+  %7 = f32[16,4] aten::mul(%1, %6), scope=aten::gelu_backward.1
+  %8 = f32[16,4] aten::mul(%7, %2), scope=aten::gelu_backward.1
+  %9 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.1, value=0.707107
+  %10 = f32[16,4] aten::mul(%1, %9), scope=aten::gelu_backward.1
+  %11 = f32[16,4] aten::erf(%10), scope=aten::gelu_backward.1
+  %12 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.1, value=1
+  %13 = f32[16,4] aten::add(%12, %11), scope=aten::gelu_backward.1
+  %14 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.1, value=0.5
+  %15 = f32[16,4] aten::mul(%14, %13), scope=aten::gelu_backward.1
+  %16 = f32[16,4] aten::add(%15, %8), scope=aten::gelu_backward.1
+  %17 = f32[16,4] lazy_tensors::device_data(), device=GPU:0
+  %18 = f32[16,4] aten::mul(%17, %16), scope=aten::gelu_backward.1
+  %19 = f32[16,4] aten::_softmax_backward_data(%18, %1, %0), dim=1, ROOT=1
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  forward (./repro.py:24)
+  forward (./repro.py:40)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:48)
+
+Hashes: (afc1fb2100220209cbd10cf48360fe80)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] aten::gelu(%1), location=gelu@functional.py:1555
+  %3 = f32[16,4] aten::relu(%2), location=relu@functional.py:1298, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  cross_entropy (/raid/pytorch_upstream/torch/nn/functional.py:2826)
+  forward (/raid/pytorch_upstream/torch/nn/modules/loss.py:1120)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:49)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=forward@repro.py:24, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  cross_entropy (/raid/pytorch_upstream/torch/nn/functional.py:2826)
+  forward (/raid/pytorch_upstream/torch/nn/modules/loss.py:1120)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:49)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=cross_entropy@functional.py:2826, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (49f307589cca1667689ae71fb800df52)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[] lazy_tensors::device_data(), location=cross_entropy@functional.py:2826, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  backward (./repro.py:28)
+  apply (/raid/pytorch_upstream/torch/autograd/function.py:87)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=backward@repro.py:28, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (8edbc428e4f5a6734e9f9ad8c13be9d2)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] aten::gelu(%1), location=gelu@functional.py:1555, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  mark_step (/raid/pytorch_upstream/lazy_tensor_core/lazy_tensor_core/core/lazy_model.py:727)
+  <module> (./repro.py:50)
+
+Hashes: (6b944a27180a2e233a48639332fb6ea6)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.2, value=0.398942
+  %3 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.2, value=-0.5
+  %4 = f32[16,4] aten::mul(%1, %1), scope=aten::gelu_backward.2
+  %5 = f32[16,4] aten::mul(%4, %3), scope=aten::gelu_backward.2
+  %6 = f32[16,4] aten::exp(%5), scope=aten::gelu_backward.2
+  %7 = f32[16,4] aten::mul(%1, %6), scope=aten::gelu_backward.2
+  %8 = f32[16,4] aten::mul(%7, %2), scope=aten::gelu_backward.2
+  %9 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.2, value=0.707107
+  %10 = f32[16,4] aten::mul(%1, %9), scope=aten::gelu_backward.2
+  %11 = f32[16,4] aten::erf(%10), scope=aten::gelu_backward.2
+  %12 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.2, value=1
+  %13 = f32[16,4] aten::add(%12, %11), scope=aten::gelu_backward.2
+  %14 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.2, value=0.5
+  %15 = f32[16,4] aten::mul(%14, %13), scope=aten::gelu_backward.2
+  %16 = f32[16,4] aten::add(%15, %8), scope=aten::gelu_backward.2
+  %17 = f32[16,4] lazy_tensors::device_data(), device=GPU:0
+  %18 = f32[16,4] aten::mul(%17, %16), scope=aten::gelu_backward.2
+  %19 = f32[16,4] aten::_softmax_backward_data(%18, %1, %0), dim=1
+  %20 = f32[16,4] lazy_tensors::device_data(), device=GPU:0
+  %21 = f32[16,4] aten::add(%20, %19), ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  forward (./repro.py:24)
+  forward (./repro.py:40)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:48)
+
+Hashes: (afc1fb2100220209cbd10cf48360fe80)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] aten::gelu(%1), location=gelu@functional.py:1555
+  %3 = f32[16,4] aten::relu(%2), location=relu@functional.py:1298, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  cross_entropy (/raid/pytorch_upstream/torch/nn/functional.py:2826)
+  forward (/raid/pytorch_upstream/torch/nn/modules/loss.py:1120)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:49)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=forward@repro.py:24, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  cross_entropy (/raid/pytorch_upstream/torch/nn/functional.py:2826)
+  forward (/raid/pytorch_upstream/torch/nn/modules/loss.py:1120)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:49)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=cross_entropy@functional.py:2826, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (49f307589cca1667689ae71fb800df52)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[] lazy_tensors::device_data(), location=cross_entropy@functional.py:2826, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  backward (./repro.py:28)
+  apply (/raid/pytorch_upstream/torch/autograd/function.py:87)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=backward@repro.py:28, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (8edbc428e4f5a6734e9f9ad8c13be9d2)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] aten::gelu(%1), location=gelu@functional.py:1555, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  mark_step (/raid/pytorch_upstream/lazy_tensor_core/lazy_tensor_core/core/lazy_model.py:727)
+  <module> (./repro.py:50)
+
+Hashes: (6b944a27180a2e233a48639332fb6ea6)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.3, value=0.398942
+  %3 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.3, value=-0.5
+  %4 = f32[16,4] aten::mul(%1, %1), scope=aten::gelu_backward.3
+  %5 = f32[16,4] aten::mul(%4, %3), scope=aten::gelu_backward.3
+  %6 = f32[16,4] aten::exp(%5), scope=aten::gelu_backward.3
+  %7 = f32[16,4] aten::mul(%1, %6), scope=aten::gelu_backward.3
+  %8 = f32[16,4] aten::mul(%7, %2), scope=aten::gelu_backward.3
+  %9 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.3, value=0.707107
+  %10 = f32[16,4] aten::mul(%1, %9), scope=aten::gelu_backward.3
+  %11 = f32[16,4] aten::erf(%10), scope=aten::gelu_backward.3
+  %12 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.3, value=1
+  %13 = f32[16,4] aten::add(%12, %11), scope=aten::gelu_backward.3
+  %14 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.3, value=0.5
+  %15 = f32[16,4] aten::mul(%14, %13), scope=aten::gelu_backward.3
+  %16 = f32[16,4] aten::add(%15, %8), scope=aten::gelu_backward.3
+  %17 = f32[16,4] lazy_tensors::device_data(), device=GPU:0
+  %18 = f32[16,4] aten::mul(%17, %16), scope=aten::gelu_backward.3
+  %19 = f32[16,4] aten::_softmax_backward_data(%18, %1, %0), dim=1
+  %20 = f32[16,4] lazy_tensors::device_data(), device=GPU:0
+  %21 = f32[16,4] aten::add(%20, %19), ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  forward (./repro.py:24)
+  forward (./repro.py:40)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:48)
+
+Hashes: (afc1fb2100220209cbd10cf48360fe80)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] aten::gelu(%1), location=gelu@functional.py:1555
+  %3 = f32[16,4] aten::relu(%2), location=relu@functional.py:1298, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  cross_entropy (/raid/pytorch_upstream/torch/nn/functional.py:2826)
+  forward (/raid/pytorch_upstream/torch/nn/modules/loss.py:1120)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:49)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=forward@repro.py:24, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  cross_entropy (/raid/pytorch_upstream/torch/nn/functional.py:2826)
+  forward (/raid/pytorch_upstream/torch/nn/modules/loss.py:1120)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:49)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=cross_entropy@functional.py:2826, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (49f307589cca1667689ae71fb800df52)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[] lazy_tensors::device_data(), location=cross_entropy@functional.py:2826, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  backward (./repro.py:28)
+  apply (/raid/pytorch_upstream/torch/autograd/function.py:87)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=backward@repro.py:28, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (8edbc428e4f5a6734e9f9ad8c13be9d2)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] aten::gelu(%1), location=gelu@functional.py:1555, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  mark_step (/raid/pytorch_upstream/lazy_tensor_core/lazy_tensor_core/core/lazy_model.py:727)
+  <module> (./repro.py:50)
+
+Hashes: (6b944a27180a2e233a48639332fb6ea6)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.4, value=0.398942
+  %3 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.4, value=-0.5
+  %4 = f32[16,4] aten::mul(%1, %1), scope=aten::gelu_backward.4
+  %5 = f32[16,4] aten::mul(%4, %3), scope=aten::gelu_backward.4
+  %6 = f32[16,4] aten::exp(%5), scope=aten::gelu_backward.4
+  %7 = f32[16,4] aten::mul(%1, %6), scope=aten::gelu_backward.4
+  %8 = f32[16,4] aten::mul(%7, %2), scope=aten::gelu_backward.4
+  %9 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.4, value=0.707107
+  %10 = f32[16,4] aten::mul(%1, %9), scope=aten::gelu_backward.4
+  %11 = f32[16,4] aten::erf(%10), scope=aten::gelu_backward.4
+  %12 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.4, value=1
+  %13 = f32[16,4] aten::add(%12, %11), scope=aten::gelu_backward.4
+  %14 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.4, value=0.5
+  %15 = f32[16,4] aten::mul(%14, %13), scope=aten::gelu_backward.4
+  %16 = f32[16,4] aten::add(%15, %8), scope=aten::gelu_backward.4
+  %17 = f32[16,4] lazy_tensors::device_data(), device=GPU:0
+  %18 = f32[16,4] aten::mul(%17, %16), scope=aten::gelu_backward.4
+  %19 = f32[16,4] aten::_softmax_backward_data(%18, %1, %0), dim=1
+  %20 = f32[16,4] lazy_tensors::device_data(), device=GPU:0
+  %21 = f32[16,4] aten::add(%20, %19), ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  forward (./repro.py:24)
+  forward (./repro.py:40)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:48)
+
+Hashes: (afc1fb2100220209cbd10cf48360fe80)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] aten::gelu(%1), location=gelu@functional.py:1555
+  %3 = f32[16,4] aten::relu(%2), location=relu@functional.py:1298, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  cross_entropy (/raid/pytorch_upstream/torch/nn/functional.py:2826)
+  forward (/raid/pytorch_upstream/torch/nn/modules/loss.py:1120)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:49)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=forward@repro.py:24, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  cross_entropy (/raid/pytorch_upstream/torch/nn/functional.py:2826)
+  forward (/raid/pytorch_upstream/torch/nn/modules/loss.py:1120)
+  _call_impl (/raid/pytorch_upstream/torch/nn/modules/module.py:1059)
+  <module> (./repro.py:49)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=cross_entropy@functional.py:2826, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (49f307589cca1667689ae71fb800df52)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[] lazy_tensors::device_data(), location=cross_entropy@functional.py:2826, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  backward (./repro.py:28)
+  apply (/raid/pytorch_upstream/torch/autograd/function.py:87)
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (9db661beee3331ac25efc1f2a8755958)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=backward@repro.py:28, device=GPU:0, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+
+Hashes: (8edbc428e4f5a6734e9f9ad8c13be9d2)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] aten::gelu(%1), location=gelu@functional.py:1555, ROOT=0
+}
+
+## END_GRAPH
+
+
+[ScheduleSyncTensorsGraph]
+TensorsGraphInfo:
+  mark_step (/raid/pytorch_upstream/lazy_tensor_core/lazy_tensor_core/core/lazy_model.py:727)
+  <module> (./repro.py:50)
+
+Hashes: (6b944a27180a2e233a48639332fb6ea6)
+
+## BEGIN_GRAPH
+IR {
+  %0 = f32[16,4] lazy_tensors::device_data(), location=softmax@functional.py:1679, device=GPU:0
+  %1 = f32[16,4] aten::softmax(%0), location=softmax@functional.py:1679, dim=1, dtype=6
+  %2 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.5, value=0.398942
+  %3 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.5, value=-0.5
+  %4 = f32[16,4] aten::mul(%1, %1), scope=aten::gelu_backward.5
+  %5 = f32[16,4] aten::mul(%4, %3), scope=aten::gelu_backward.5
+  %6 = f32[16,4] aten::exp(%5), scope=aten::gelu_backward.5
+  %7 = f32[16,4] aten::mul(%1, %6), scope=aten::gelu_backward.5
+  %8 = f32[16,4] aten::mul(%7, %2), scope=aten::gelu_backward.5
+  %9 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.5, value=0.707107
+  %10 = f32[16,4] aten::mul(%1, %9), scope=aten::gelu_backward.5
+  %11 = f32[16,4] aten::erf(%10), scope=aten::gelu_backward.5
+  %12 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.5, value=1
+  %13 = f32[16,4] aten::add(%12, %11), scope=aten::gelu_backward.5
+  %14 = f32[16,4] prim::Constant(), scope=aten::gelu_backward.5, value=0.5
+  %15 = f32[16,4] aten::mul(%14, %13), scope=aten::gelu_backward.5
+  %16 = f32[16,4] aten::add(%15, %8), scope=aten::gelu_backward.5
+  %17 = f32[16,4] lazy_tensors::device_data(), device=GPU:0
+  %18 = f32[16,4] aten::mul(%17, %16), scope=aten::gelu_backward.5
+  %19 = f32[16,4] aten::_softmax_backward_data(%18, %1, %0), dim=1
+  %20 = f32[16,4] lazy_tensors::device_data(), device=GPU:0
+  %21 = f32[16,4] aten::add(%20, %19), ROOT=0
+}
+
+## END_GRAPH
+
+

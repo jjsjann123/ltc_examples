@@ -1,0 +1,379 @@
+running graph: graph(%p0 : Tensor):
+  %1 : int = prim::Constant[value=1]()
+  %2 : int = prim::Constant[value=6]()
+  %3 : Tensor = aten::softmax(%p0, %1, %2)
+  %4 : Tensor = aten::gelu(%3)
+  %5 : Tensor = aten::relu(%4)
+  return (%5)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  %1 : int = prim::Constant[value=1]()
+  %2 : int = prim::Constant[value=6]()
+  %3 : Tensor = aten::softmax(%p0, %1, %2)
+  %4 : Tensor = aten::gelu(%3)
+  return (%4)
+
+running graph: graph(%p0 : Tensor,
+      %p1 : Tensor):
+  %2 : int = prim::Constant[value=1]()
+  %3 : int = prim::Constant[value=6]()
+  %4 : Tensor = aten::softmax(%p0, %2, %3)
+  %5 : Tensor = prim::Constant[value={0.398942}]()
+  %6 : Tensor = prim::Constant[value={-0.5}]()
+  %7 : Tensor = aten::mul(%4, %4)
+  %8 : Tensor = aten::mul(%7, %6)
+  %9 : Tensor = aten::exp(%8)
+  %10 : Tensor = aten::mul(%4, %9)
+  %11 : Tensor = aten::mul(%10, %5)
+  %12 : Tensor = prim::Constant[value={0.707107}]()
+  %13 : Tensor = aten::mul(%4, %12)
+  %14 : Tensor = aten::erf(%13)
+  %15 : Tensor = prim::Constant[value={1}]()
+  %16 : int = prim::Constant[value=1]()
+  %17 : Tensor = aten::add(%15, %14, %16)
+  %18 : Tensor = prim::Constant[value={0.5}]()
+  %19 : Tensor = aten::mul(%18, %17)
+  %20 : int = prim::Constant[value=1]()
+  %21 : Tensor = aten::add(%19, %11, %20)
+  %22 : Tensor = aten::mul(%p1, %21)
+  %23 : int = prim::Constant[value=1]()
+  %24 : Tensor = aten::_softmax_backward_data(%22, %4, %23, %p0)
+  return (%p0, %24)
+
+running graph: graph(%p0 : Tensor):
+  %1 : int = prim::Constant[value=1]()
+  %2 : int = prim::Constant[value=6]()
+  %3 : Tensor = aten::softmax(%p0, %1, %2)
+  %4 : Tensor = aten::gelu(%3)
+  %5 : Tensor = aten::relu(%4)
+  return (%5)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  %1 : int = prim::Constant[value=1]()
+  %2 : int = prim::Constant[value=6]()
+  %3 : Tensor = aten::softmax(%p0, %1, %2)
+  %4 : Tensor = aten::gelu(%3)
+  return (%4)
+
+running graph: graph(%p0 : Tensor,
+      %p1 : Tensor,
+      %p2 : Tensor):
+  %3 : int = prim::Constant[value=1]()
+  %4 : int = prim::Constant[value=6]()
+  %5 : Tensor = aten::softmax(%p0, %3, %4)
+  %6 : Tensor = prim::Constant[value={0.398942}]()
+  %7 : Tensor = prim::Constant[value={-0.5}]()
+  %8 : Tensor = aten::mul(%5, %5)
+  %9 : Tensor = aten::mul(%8, %7)
+  %10 : Tensor = aten::exp(%9)
+  %11 : Tensor = aten::mul(%5, %10)
+  %12 : Tensor = aten::mul(%11, %6)
+  %13 : Tensor = prim::Constant[value={0.707107}]()
+  %14 : Tensor = aten::mul(%5, %13)
+  %15 : Tensor = aten::erf(%14)
+  %16 : Tensor = prim::Constant[value={1}]()
+  %17 : int = prim::Constant[value=1]()
+  %18 : Tensor = aten::add(%16, %15, %17)
+  %19 : Tensor = prim::Constant[value={0.5}]()
+  %20 : Tensor = aten::mul(%19, %18)
+  %21 : int = prim::Constant[value=1]()
+  %22 : Tensor = aten::add(%20, %12, %21)
+  %23 : Tensor = aten::mul(%p1, %22)
+  %24 : int = prim::Constant[value=1]()
+  %25 : Tensor = aten::_softmax_backward_data(%23, %5, %24, %p0)
+  %26 : int = prim::Constant[value=1]()
+  %27 : Tensor = aten::add(%p2, %25, %26)
+  return (%27)
+
+running graph: graph(%p0 : Tensor):
+  %1 : int = prim::Constant[value=1]()
+  %2 : int = prim::Constant[value=6]()
+  %3 : Tensor = aten::softmax(%p0, %1, %2)
+  %4 : Tensor = aten::gelu(%3)
+  %5 : Tensor = aten::relu(%4)
+  return (%5)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  %1 : int = prim::Constant[value=1]()
+  %2 : int = prim::Constant[value=6]()
+  %3 : Tensor = aten::softmax(%p0, %1, %2)
+  %4 : Tensor = aten::gelu(%3)
+  return (%4)
+
+running graph: graph(%p0 : Tensor,
+      %p1 : Tensor,
+      %p2 : Tensor):
+  %3 : int = prim::Constant[value=1]()
+  %4 : int = prim::Constant[value=6]()
+  %5 : Tensor = aten::softmax(%p0, %3, %4)
+  %6 : Tensor = prim::Constant[value={0.398942}]()
+  %7 : Tensor = prim::Constant[value={-0.5}]()
+  %8 : Tensor = aten::mul(%5, %5)
+  %9 : Tensor = aten::mul(%8, %7)
+  %10 : Tensor = aten::exp(%9)
+  %11 : Tensor = aten::mul(%5, %10)
+  %12 : Tensor = aten::mul(%11, %6)
+  %13 : Tensor = prim::Constant[value={0.707107}]()
+  %14 : Tensor = aten::mul(%5, %13)
+  %15 : Tensor = aten::erf(%14)
+  %16 : Tensor = prim::Constant[value={1}]()
+  %17 : int = prim::Constant[value=1]()
+  %18 : Tensor = aten::add(%16, %15, %17)
+  %19 : Tensor = prim::Constant[value={0.5}]()
+  %20 : Tensor = aten::mul(%19, %18)
+  %21 : int = prim::Constant[value=1]()
+  %22 : Tensor = aten::add(%20, %12, %21)
+  %23 : Tensor = aten::mul(%p1, %22)
+  %24 : int = prim::Constant[value=1]()
+  %25 : Tensor = aten::_softmax_backward_data(%23, %5, %24, %p0)
+  %26 : int = prim::Constant[value=1]()
+  %27 : Tensor = aten::add(%p2, %25, %26)
+  return (%27)
+
+running graph: graph(%p0 : Tensor):
+  %1 : int = prim::Constant[value=1]()
+  %2 : int = prim::Constant[value=6]()
+  %3 : Tensor = aten::softmax(%p0, %1, %2)
+  %4 : Tensor = aten::gelu(%3)
+  %5 : Tensor = aten::relu(%4)
+  return (%5)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  %1 : int = prim::Constant[value=1]()
+  %2 : int = prim::Constant[value=6]()
+  %3 : Tensor = aten::softmax(%p0, %1, %2)
+  %4 : Tensor = aten::gelu(%3)
+  return (%4)
+
+running graph: graph(%p0 : Tensor,
+      %p1 : Tensor,
+      %p2 : Tensor):
+  %3 : int = prim::Constant[value=1]()
+  %4 : int = prim::Constant[value=6]()
+  %5 : Tensor = aten::softmax(%p0, %3, %4)
+  %6 : Tensor = prim::Constant[value={0.398942}]()
+  %7 : Tensor = prim::Constant[value={-0.5}]()
+  %8 : Tensor = aten::mul(%5, %5)
+  %9 : Tensor = aten::mul(%8, %7)
+  %10 : Tensor = aten::exp(%9)
+  %11 : Tensor = aten::mul(%5, %10)
+  %12 : Tensor = aten::mul(%11, %6)
+  %13 : Tensor = prim::Constant[value={0.707107}]()
+  %14 : Tensor = aten::mul(%5, %13)
+  %15 : Tensor = aten::erf(%14)
+  %16 : Tensor = prim::Constant[value={1}]()
+  %17 : int = prim::Constant[value=1]()
+  %18 : Tensor = aten::add(%16, %15, %17)
+  %19 : Tensor = prim::Constant[value={0.5}]()
+  %20 : Tensor = aten::mul(%19, %18)
+  %21 : int = prim::Constant[value=1]()
+  %22 : Tensor = aten::add(%20, %12, %21)
+  %23 : Tensor = aten::mul(%p1, %22)
+  %24 : int = prim::Constant[value=1]()
+  %25 : Tensor = aten::_softmax_backward_data(%23, %5, %24, %p0)
+  %26 : int = prim::Constant[value=1]()
+  %27 : Tensor = aten::add(%p2, %25, %26)
+  return (%27)
+
+running graph: graph(%p0 : Tensor):
+  %1 : int = prim::Constant[value=1]()
+  %2 : int = prim::Constant[value=6]()
+  %3 : Tensor = aten::softmax(%p0, %1, %2)
+  %4 : Tensor = aten::gelu(%3)
+  %5 : Tensor = aten::relu(%4)
+  return (%5)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  return (%p0)
+
+running graph: graph(%p0 : Tensor):
+  %1 : int = prim::Constant[value=1]()
+  %2 : int = prim::Constant[value=6]()
+  %3 : Tensor = aten::softmax(%p0, %1, %2)
+  %4 : Tensor = aten::gelu(%3)
+  return (%4)
+
+running graph: graph(%p0 : Tensor,
+      %p1 : Tensor,
+      %p2 : Tensor):
+  %3 : int = prim::Constant[value=1]()
+  %4 : int = prim::Constant[value=6]()
+  %5 : Tensor = aten::softmax(%p0, %3, %4)
+  %6 : Tensor = prim::Constant[value=./repro.py:37: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  o = self.softmax(x)
+Metric: DeviceLockWait
+  TotalSamples: 45
+  Accumulator: 047.068us
+  ValueRate: 037.700us / second
+  Rate: 36.0439 / second
+  Percentiles: 1%=000.852us; 5%=000.863us; 10%=000.887us; 20%=000.905us; 50%=000.995us; 80%=001.194us; 90%=001.287us; 95%=001.316us; 99%=001.521us
+Metric: IrValueTensorToDataHandle
+  TotalSamples: 31
+  Accumulator: 348.079us
+  ValueRate: 278.766us / second
+  Rate: 24.827 / second
+  Percentiles: 1%=009.604us; 5%=009.616us; 10%=009.675us; 20%=009.756us; 50%=010.186us; 80%=011.807us; 90%=015.023us; 95%=015.434us; 99%=020.638us
+Metric: TensorsGraphSize
+  TotalSamples: 45
+  Accumulator: 173.00
+  ValueRate: 142.59 / second
+  Rate: 37.0911 / second
+  Percentiles: 1%=1.00; 5%=1.00; 10%=1.00; 20%=1.00; 50%=1.00; 80%=4.00; 90%=20.00; 95%=22.00; 99%=22.00
+Counter: CachedCompile
+  Value: 39
+Counter: CreateLtcTensor
+  Value: 76
+Counter: DestroyLtcTensor
+  Value: 72
+Counter: DeviceDataCacheMiss
+  Value: 2
+Counter: MarkStep
+  Value: 5
+Counter: SyncTensorsToData
+  Value: 1
+Counter: UncachedCompile
+  Value: 6
+Counter: aten::_log_softmax
+  Value: 5
+Counter: aten::_log_softmax_backward_data
+  Value: 5
+Counter: aten::fill_.Scalar
+  Value: 5
+Counter: aten::nll_loss_backward
+  Value: 5
+Counter: aten::nll_loss_forward
+  Value: 5
+Counter: aten::normal_
+  Value: 1
+Counter: aten::random_.to
+  Value: 1
+Counter: aten::threshold_backward.grad_input
+  Value: 5
+Counter: xla::_copy_from
+  Value: 121
+Counter: xla::_copy_from_and_resize
+  Value: 12
+Counter: xla::_softmax
+  Value: 5
+Counter: xla::_softmax_backward_data
+  Value: 5
+Counter: xla::add
+  Value: 4
+Counter: xla::gelu
+  Value: 5
+Counter: xla::gelu_backward
+  Value: 5
+Counter: xla::relu
+  Value: 5
+
+{0.398942}]()
+  %7 : Tensor = prim::Constant[value={-0.5}]()
+  %8 : Tensor = aten::mul(%5, %5)
+  %9 : Tensor = aten::mul(%8, %7)
+  %10 : Tensor = aten::exp(%9)
+  %11 : Tensor = aten::mul(%5, %10)
+  %12 : Tensor = aten::mul(%11, %6)
+  %13 : Tensor = prim::Constant[value={0.707107}]()
+  %14 : Tensor = aten::mul(%5, %13)
+  %15 : Tensor = aten::erf(%14)
+  %16 : Tensor = prim::Constant[value={1}]()
+  %17 : int = prim::Constant[value=1]()
+  %18 : Tensor = aten::add(%16, %15, %17)
+  %19 : Tensor = prim::Constant[value={0.5}]()
+  %20 : Tensor = aten::mul(%19, %18)
+  %21 : int = prim::Constant[value=1]()
+  %22 : Tensor = aten::add(%20, %12, %21)
+  %23 : Tensor = aten::mul(%p1, %22)
+  %24 : int = prim::Constant[value=1]()
+  %25 : Tensor = aten::_softmax_backward_data(%23, %5, %24, %p0)
+  %26 : int = prim::Constant[value=1]()
+  %27 : Tensor = aten::add(%p2, %25, %26)
+  return (%27)
+
